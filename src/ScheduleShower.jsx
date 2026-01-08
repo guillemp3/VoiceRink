@@ -38,7 +38,7 @@ function ScheduleShower() {
   return (
     <>
       
-      <h2>Matchs / Schedule</h2>
+      {/* <h2>Matchs / Schedule</h2> */}
       <div className="card">
         <button onClick={fetchSchedule} disabled={loading}>
           {loading ? 'Loading...' : 'Afficher les matchs disponibles'}
@@ -48,7 +48,7 @@ function ScheduleShower() {
         {schedule && (
           <div style={{ marginTop: '1rem', textAlign: 'left', maxHeight: '400px', overflow: 'auto', whiteSpace: 'pre-wrap', backgroundColor: '#f0f0f0', padding: '1rem', borderRadius: '4px', fontSize: '0.85rem' }}>
             <h3>Matchs:</h3>
-            {JSON.stringify(schedule, null, 2)}
+            {showGames(schedule)}
           </div>
         )}
       </div>
@@ -57,3 +57,19 @@ function ScheduleShower() {
 }
 
 export default ScheduleShower
+// Permettre d'afficher dynamiquement 1 a 5 matchs du jour et la carte
+function showGames(schedule) {
+  if (!schedule) {
+    return <div>Aucun match aujourd'hui!</div>;
+  }
+  return <>
+  <div>{JSON.stringify(schedule.gameWeek[0].games[0].awayTeam.abbrev, null, 2)}</div>
+  <div>{JSON.stringify(schedule.gameWeek[0].games[1].awayTeam.abbrev, null, 2)}</div>
+  <div>{JSON.stringify(schedule.gameWeek[0].games[2].awayTeam.abbrev, null, 2)}</div>
+  <div>{JSON.stringify(schedule.gameWeek[0].games[3].awayTeam.abbrev, null, 2)}</div>
+  <div>{JSON.stringify(schedule.gameWeek[0].games[4].awayTeam.abbrev, null, 2)}</div>
+  </>
+  
+}
+
+
