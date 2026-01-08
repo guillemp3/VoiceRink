@@ -2,6 +2,10 @@ import { useState } from 'react'
 import axios from 'axios';
 import './App.css'
 
+
+// Composante pour recuperer et afficher les matchs du jour
+
+
 export async function callSchedule() {
   try {
     const response = await axios.get('http://localhost:3001/api/horaire');
